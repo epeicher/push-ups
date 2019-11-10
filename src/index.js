@@ -5,7 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { initApp } from './setup';
 
-// initApp();
+initApp();
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
