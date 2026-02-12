@@ -23,7 +23,6 @@ public/pushups.csv → fetch at runtime → parseCsv → Vega-Lite spec → rend
 - **src/BarChart.js** — Fetches `public/pushups.csv` at runtime, parses it, merges with the Vega-Lite spec, and renders via `react-vega`
 - **public/pushups.csv** — Workout data source (edit this to add new data)
 - **src/spec.json** — Vega-Lite v4 specification (800×400 bar chart, temporal x-axis, sum aggregation on y-axis, color by series index)
-- **src/api.js** / **src/data.js** — Empty/unused placeholders
 
 **Data shape:** flat array of `{ date, serieIndex (1-6), amount }` objects representing push-up counts per set per day.
 
