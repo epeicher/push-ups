@@ -1,5 +1,7 @@
 # Push-Ups Tracker
 
+**Live:** https://epeicher.github.io/push-ups/
+
 A React app that visualizes push-up workout progress over time as a stacked bar chart. Each bar represents a workout day, broken down by set (up to 6 sets per session).
 
 Built with [React](https://reactjs.org/) and [Vega-Lite](https://vega.github.io/vega-lite/).
