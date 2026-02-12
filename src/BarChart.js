@@ -1,137 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { VegaEmbed } from 'react-vega';
 import spec from './spec.json'
 
-const barData = {
-  values: [
-    { "date": "2019-09-02", "serieIndex": 1, "amount": 20 },
-    { "date": "2019-09-02", "serieIndex": 2, "amount": 12 },
-    { "date": "2019-09-02", "serieIndex": 3, "amount": 10 },
-    { "date": "2019-09-02", "serieIndex": 4, "amount": 0 },
-    { "date": "2019-09-02", "serieIndex": 5, "amount": 0 },
-    { "date": "2019-09-02", "serieIndex": 6, "amount": 0 },
-    { "date": "2019-09-04", "serieIndex": 1, "amount": 20 },
-    { "date": "2019-09-04", "serieIndex": 2, "amount": 12 },
-    { "date": "2019-09-04", "serieIndex": 3, "amount": 6 },
-    { "date": "2019-09-04", "serieIndex": 4, "amount": 0 },
-    { "date": "2019-09-04", "serieIndex": 5, "amount": 0 },
-    { "date": "2019-09-04", "serieIndex": 6, "amount": 0 },
-    { "date": "2019-09-07", "serieIndex": 1, "amount": 23 },
-    { "date": "2019-09-07", "serieIndex": 2, "amount": 12 },
-    { "date": "2019-09-07", "serieIndex": 3, "amount": 10 },
-    { "date": "2019-09-07", "serieIndex": 4, "amount": 0 },
-    { "date": "2019-09-07", "serieIndex": 5, "amount": 0 },
-    { "date": "2019-09-07", "serieIndex": 6, "amount": 0 },
-    { "date": "2019-09-09", "serieIndex": 1, "amount": 21 },
-    { "date": "2019-09-09", "serieIndex": 2, "amount": 13 },
-    { "date": "2019-09-09", "serieIndex": 3, "amount": 10 },
-    { "date": "2019-09-09", "serieIndex": 4, "amount": 0 },
-    { "date": "2019-09-09", "serieIndex": 5, "amount": 0 },
-    { "date": "2019-09-09", "serieIndex": 6, "amount": 0 },
-    { "date": "2019-09-23", "serieIndex": 1, "amount": 26 },
-    { "date": "2019-09-23", "serieIndex": 2, "amount": 12 },
-    { "date": "2019-09-23", "serieIndex": 3, "amount": 10 },
-    { "date": "2019-09-23", "serieIndex": 4, "amount": 6 },
-    { "date": "2019-09-23", "serieIndex": 5, "amount": 0 },
-    { "date": "2019-09-23", "serieIndex": 6, "amount": 0 },
-    { "date": "2019-09-25", "serieIndex": 1, "amount": 26 },
-    { "date": "2019-09-25", "serieIndex": 2, "amount": 14 },
-    { "date": "2019-09-25", "serieIndex": 3, "amount": 12 },
-    { "date": "2019-09-25", "serieIndex": 4, "amount": 8 },
-    { "date": "2019-09-25", "serieIndex": 5, "amount": 0 },
-    { "date": "2019-09-25", "serieIndex": 6, "amount": 0 },
-    { "date": "2019-09-29", "serieIndex": 1, "amount": 26 },
-    { "date": "2019-09-29", "serieIndex": 2, "amount": 16 },
-    { "date": "2019-09-29", "serieIndex": 3, "amount": 12 },
-    { "date": "2019-09-29", "serieIndex": 4, "amount": 10 },
-    { "date": "2019-09-29", "serieIndex": 5, "amount": 0 },
-    { "date": "2019-09-29", "serieIndex": 6, "amount": 0 },
-    { "date": "2019-09-30", "serieIndex": 1, "amount": 29 },
-    { "date": "2019-09-30", "serieIndex": 2, "amount": 18 },
-    { "date": "2019-09-30", "serieIndex": 3, "amount": 14 },
-    { "date": "2019-09-30", "serieIndex": 4, "amount": 10 },
-    { "date": "2019-09-30", "serieIndex": 5, "amount": 0 },
-    { "date": "2019-09-30", "serieIndex": 6, "amount": 0 },
-    { "date": "2019-10-02", "serieIndex": 1, "amount": 29 },
-    { "date": "2019-10-02", "serieIndex": 2, "amount": 20 },
-    { "date": "2019-10-02", "serieIndex": 3, "amount": 12 },
-    { "date": "2019-10-02", "serieIndex": 4, "amount": 10 },
-    { "date": "2019-10-02", "serieIndex": 5, "amount": 0 },
-    { "date": "2019-10-02", "serieIndex": 6, "amount": 0 },
-    { "date": "2019-10-04", "serieIndex": 1, "amount": 29 },
-    { "date": "2019-10-04", "serieIndex": 2, "amount": 20 },
-    { "date": "2019-10-04", "serieIndex": 3, "amount": 14 },
-    { "date": "2019-10-04", "serieIndex": 4, "amount": 10 },
-    { "date": "2019-10-04", "serieIndex": 5, "amount": 0 },
-    { "date": "2019-10-04", "serieIndex": 6, "amount": 0 },
-    { "date": "2019-10-07", "serieIndex": 1, "amount": 32 },
-    { "date": "2019-10-07", "serieIndex": 2, "amount": 20 },
-    { "date": "2019-10-07", "serieIndex": 3, "amount": 12 },
-    { "date": "2019-10-07", "serieIndex": 4, "amount": 12 },
-    { "date": "2019-10-07", "serieIndex": 5, "amount": 12 },
-    { "date": "2019-10-07", "serieIndex": 6, "amount": 12 },
-    { "date": "2019-10-10", "serieIndex": 1, "amount": 32 },
-    { "date": "2019-10-10", "serieIndex": 2, "amount": 20 },
-    { "date": "2019-10-10", "serieIndex": 3, "amount": 14 },
-    { "date": "2019-10-10", "serieIndex": 4, "amount": 14 },
-    { "date": "2019-10-10", "serieIndex": 5, "amount": 12 },
-    { "date": "2019-10-10", "serieIndex": 6, "amount": 12 },
-    { "date": "2019-10-12", "serieIndex": 1, "amount": 32 },
-    { "date": "2019-10-12", "serieIndex": 2, "amount": 20 },
-    { "date": "2019-10-12", "serieIndex": 3, "amount": 20 },
-    { "date": "2019-10-12", "serieIndex": 4, "amount": 14 },
-    { "date": "2019-10-12", "serieIndex": 5, "amount": 14 },
-    { "date": "2019-10-12", "serieIndex": 6, "amount": 16 },
-    { "date": "2019-10-14", "serieIndex": 1, "amount": 35 },
-    { "date": "2019-10-14", "serieIndex": 2, "amount": 20 },
-    { "date": "2019-10-14", "serieIndex": 3, "amount": 18 },
-    { "date": "2019-10-14", "serieIndex": 4, "amount": 16 },
-    { "date": "2019-10-14", "serieIndex": 5, "amount": 12 },
-    { "date": "2019-10-14", "serieIndex": 6, "amount": 12 },
-    { "date": "2019-10-16", "serieIndex": 1, "amount": 35 },
-    { "date": "2019-10-16", "serieIndex": 2, "amount": 24 },
-    { "date": "2019-10-16", "serieIndex": 3, "amount": 20 },
-    { "date": "2019-10-16", "serieIndex": 4, "amount": 16 },
-    { "date": "2019-10-16", "serieIndex": 5, "amount": 14 },
-    { "date": "2019-10-16", "serieIndex": 6, "amount": 14 },
-    { "date": "2019-10-19", "serieIndex": 1, "amount": 35 },
-    { "date": "2019-10-19", "serieIndex": 2, "amount": 20 },
-    { "date": "2019-10-19", "serieIndex": 3, "amount": 18 },
-    { "date": "2019-10-19", "serieIndex": 4, "amount": 16 },
-    { "date": "2019-10-19", "serieIndex": 5, "amount": 12 },
-    { "date": "2019-10-19", "serieIndex": 6, "amount": 16 },
-    { "date": "2019-10-21", "serieIndex": 1, "amount": 38 },
-    { "date": "2019-10-21", "serieIndex": 2, "amount": 22 },
-    { "date": "2019-10-21", "serieIndex": 3, "amount": 20 },
-    { "date": "2019-10-21", "serieIndex": 4, "amount": 16 },
-    { "date": "2019-10-21", "serieIndex": 5, "amount": 12 },
-    { "date": "2019-10-21", "serieIndex": 6, "amount": 14 },
-    { "date": "2019-10-24", "serieIndex": 1, "amount": 38 },
-    { "date": "2019-10-24", "serieIndex": 2, "amount": 20 },
-    { "date": "2019-10-24", "serieIndex": 3, "amount": 20 },
-    { "date": "2019-10-24", "serieIndex": 4, "amount": 18 },
-    { "date": "2019-10-24", "serieIndex": 5, "amount": 16 },
-    { "date": "2019-10-24", "serieIndex": 6, "amount": 14 },
-    { "date": "2019-10-25", "serieIndex": 1, "amount": 38 },
-    { "date": "2019-10-25", "serieIndex": 2, "amount": 24 },
-    { "date": "2019-10-25", "serieIndex": 3, "amount": 18 },
-    { "date": "2019-10-25", "serieIndex": 4, "amount": 14 },
-    { "date": "2019-10-25", "serieIndex": 5, "amount": 14 },
-    { "date": "2019-10-25", "serieIndex": 6, "amount": 16 },
-    { "date": "2019-10-28", "serieIndex": 1, "amount": 41 },
-    { "date": "2019-10-28", "serieIndex": 2, "amount": 22 },
-    { "date": "2019-10-28", "serieIndex": 3, "amount": 18 },
-    { "date": "2019-10-28", "serieIndex": 4, "amount": 16 },
-    { "date": "2019-10-28", "serieIndex": 5, "amount": 16 },
-    { "date": "2019-10-28", "serieIndex": 6, "amount": 14 }
-  ]
+function parseCsv(text) {
+  const lines = text.trim().split(/\r?\n/);
+  const values = [];
+  for (let i = 1; i < lines.length; i++) {
+    const cols = lines[i].split(',');
+    const date = cols[0];
+    for (let s = 1; s <= 6; s++) {
+      values.push({ date, serieIndex: s, amount: parseInt(cols[s]) || 0 });
+    }
+  }
+  return values;
 }
 
-const updatedSpec = {...spec, data: barData}
-
 const BarChart = () => {
-  return ( <VegaEmbed spec={updatedSpec}  />)
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    fetch(process.env.PUBLIC_URL + '/pushups.csv')
+      .then(res => res.text())
+      .then(text => setData(parseCsv(text)));
+  }, []);
+
+  if (!data) return null;
+
+  const updatedSpec = { ...spec, data: { values: data } };
+  return <VegaEmbed spec={updatedSpec} />;
 }
 
 export default BarChart;
-

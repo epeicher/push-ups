@@ -15,17 +15,13 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Adding Workout Data
 
-1. Add a new row to `pushups.csv` with the date and reps per set:
-   ```
-   2019-11-01,40,24,20,16,14,12
-   ```
+Add a new row to `public/pushups.csv` with the date and reps per set:
 
-2. Add corresponding entries to the `barData` array in `src/BarChart.js`:
-   ```js
-   { "date": "2019-11-01", "serieIndex": 1, "amount": 40 },
-   { "date": "2019-11-01", "serieIndex": 2, "amount": 24 },
-   // ... one entry per set
-   ```
+```
+2019-11-01,40,24,20,16,14,12
+```
+
+The chart reads the CSV at runtime — no code changes needed.
 
 ## Build
 
