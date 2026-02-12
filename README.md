@@ -31,3 +31,13 @@ The chart reads the CSV at runtime — no code changes needed.
 npm run build      # Production build to dist/
 npm run preview    # Preview production build locally
 ```
+
+## Deploy
+
+To publish to GitHub Pages:
+
+```bash
+npm run deploy
+```
+
+This builds the app and pushes the `dist/` folder to the `gh-pages` branch.
