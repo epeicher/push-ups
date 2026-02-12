@@ -19,7 +19,7 @@ const BarChart = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetch('/pushups.csv')
+    fetch(import.meta.env.BASE_URL + 'pushups.csv')
       .then(res => res.text())
       .then(text => setData(parseCsv(text)));
   }, []);
