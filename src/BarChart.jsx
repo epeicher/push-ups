@@ -19,7 +19,7 @@ const BarChart = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetch(process.env.PUBLIC_URL + '/pushups.csv')
+    fetch('/pushups.csv')
       .then(res => res.text())
       .then(text => setData(parseCsv(text)));
   }, []);
