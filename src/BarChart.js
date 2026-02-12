@@ -1,5 +1,5 @@
 import React from 'react';
-import { VegaLite } from 'react-vega';
+import { VegaEmbed } from 'react-vega';
 import spec from './spec.json'
 
 const barData = {
@@ -129,7 +129,9 @@ const barData = {
 
 const updatedSpec = {...spec, data: barData}
 
-export default (props) => {
-  return ( <VegaLite spec={updatedSpec}  />)
+const BarChart = () => {
+  return ( <VegaEmbed spec={updatedSpec}  />)
 }
+
+export default BarChart;
 

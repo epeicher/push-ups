@@ -1,10 +1,5 @@
-
-// Firebase App (the core Firebase SDK) is always required and must be listed first
-import firebase from "firebase/compat/app";
-
-// Add the Firebase products that you want to use
-import "firebase/compat/auth";
-import "firebase/compat/database";
+import { initializeApp } from "firebase/app";
+import { getDatabase, ref, get } from "firebase/database";
 
 export function initApp() {
     const firebaseConfig = {
@@ -17,11 +12,11 @@ export function initApp() {
         appId: "1:1037237193738:web:794e50c7cb29109ec1a3f3"
       };
     // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
+    const app = initializeApp(firebaseConfig);
 
-      let db = firebase.database();
+      const db = getDatabase(app);
       window.dataValues = []
-      db.ref("/pushups").once("value").then((querySnapshot) => {
+      get(ref(db, "/pushups")).then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             if(doc.val()) {
                 window.dataValues.push(doc.val())
@@ -29,6 +24,4 @@ export function initApp() {
         });
         console.log("los datos",window.dataValues)
       });
-
 }
-
