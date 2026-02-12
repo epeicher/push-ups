@@ -5,7 +5,7 @@
     "x": {
       "field": "date",
       "type": "temporal",
-      "axis": { "title": "Month of the year" }
+      "axis": { "title": "Month of the year", "format": "%b %Y" }
     },
     "y": {
       "aggregate": "sum",
