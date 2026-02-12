@@ -3,7 +3,6 @@ import  BarChart from './BarChart.jsx';
 
 function App() {
   return (<div className="container">
-    <h1>The Chart</h1>
     <BarChart />
   </div>);
 }
