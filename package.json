@@ -6,7 +6,7 @@
     "firebase": "^10.9.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
-    "react-scripts": "3.2.0",
+    "react-scripts": "5",
     "react-vega": "^7.1.0",
     "vega": "^6.2.0",
     "vega-lite": "^4.0.0-beta.11"
